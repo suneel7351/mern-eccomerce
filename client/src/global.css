@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary: #fe5f1e;
+    --hover: #b23301;
+    --secondary: #f8f8f8;
+    --gray: #ccc;
+    --smooth: all .3s ease-out;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+}
