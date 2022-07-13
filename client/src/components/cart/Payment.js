@@ -3,7 +3,7 @@ import EventIcon from "@mui/icons-material/Event";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import { useNavigate } from "react-router-dom";
-import {clearCart} from '../../redux/product/addToCart'
+import { clearCart } from "../../redux/product/addToCart";
 import "./payment.css";
 import {
   useStripe,
@@ -81,7 +81,7 @@ function Payment() {
             status: result.paymentIntent.status,
           };
           await dispatch(createOrder(order));
-          await dispatch(clearCart())
+          await dispatch(clearCart());
           navigate("/payment/success");
         } else {
           toast.error("There's some issue while processing payment ");
@@ -103,7 +103,7 @@ function Payment() {
     <>
       <Metadata title="Payment" />
       <CheckoutStep activeStep={2} />
-      <div className="w-[30%] mx-auto p-8">
+      <div className="lg:w-[30%] md:w-[40%] w-[96%] mx-auto p-3 md:p-8">
         <form className="" onSubmit={(e) => submitHandler(e)}>
           <h1 className="text-center text-3xl border-b border-slate-200 pb-2 w-[150px] mx-auto">
             Card Info

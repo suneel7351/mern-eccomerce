@@ -29,7 +29,7 @@ const Products = () => {
     filteredProducts,
   } = useSelector((state) => state.products);
   const [page, setPage] = useState(1);
-  const [price, setPrice] = useState([0, 1000]);
+  const [price, setPrice] = useState([0, 10000000000000]);
   const [ratingValue, setRatingValue] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -51,7 +51,7 @@ const Products = () => {
         keyword: "",
         page: 1,
         category: "",
-        price: [0, 25000],
+        price: [0, 1000000000000000000],
         ratingValue: 0,
       })
     );
@@ -61,9 +61,9 @@ const Products = () => {
       getAllProducts({
         keyword: keyword ? keyword : "",
         page: page ? page : 1,
-        category,
+        category: category ? category : "",
         price,
-        ratingValue,
+        ratingValue: ratingValue ? ratingValue : 0,
       })
     );
     if (error) {

@@ -37,6 +37,7 @@ const productSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+
       .addCase(getSingleProduct.pending, (state) => {
         state.loading = true;
       })
@@ -92,6 +93,7 @@ export const getSingleProduct = createAsyncThunk("/product", async (id) => {
     console.log(error);
   }
 });
+
 export const productReview = createAsyncThunk(
   "/product/review",
   async (reviewData, { rejectWithValue }) => {

@@ -1,7 +1,10 @@
 import app from "./app.js";
 import cloudinary from "cloudinary";
 import { config } from "dotenv";
-config({ path: "server/.env.local" });
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  config({ path: "server/.env.local" });
+}
+
 // Uncaught Error
 process.on("uncaughtException", (err) => {
   console.log(`Server is shutting down due to ${err.message}`);

@@ -21,7 +21,7 @@ router
 router.route("/product/:id").get(Controller.singleProduct);
 
 router.route("/product/review").put(Authenticate, Controller.productReview);
-
+router.route("/all/products").get(Controller.getProducts)
 router
   .route("/product/review/:id")
   .get(Controller.getAllReviews)

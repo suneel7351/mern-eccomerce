@@ -14,7 +14,7 @@ function Home() {
         keyword: "",
         page: 1,
         category: "",
-        price: [0, 25000],
+        price: [0, 1000000000000000000],
         ratingValue: 0,
       })
     );

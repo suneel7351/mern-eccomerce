@@ -3,6 +3,7 @@ import ErrorHandler from "../../utility/errorHandlerClass.js";
 import { AsyncError } from "../../middleware/AsyncError.js";
 import ApiFeatures from "../../utility/ApiFeatures.js";
 import cloudinary from "cloudinary";
+
 class Controller {
   static createProduct = AsyncError(async (req, res) => {
     let images = [];
@@ -86,6 +87,10 @@ class Controller {
       resultPerPage,
       filteredProducts,
     });
+  });
+  static getProducts = AsyncError(async (req, res) => {
+    const products = await Product.find();
+    res.status(200).json({ success: true, products });
   });
   static getAdminAllProducts = AsyncError(async (req, res) => {
     const products = await Product.find({});

@@ -102,191 +102,185 @@ const Header = () => {
   }
   return (
     <>
-      {loading ? (
-        <p>Loading</p>
-      ) : (
-        <>
-          <Backdrop open={isAuthenticated ? openSpeedDial : false} />
-          <AppBar
-            position="static"
-            style={{ backgroundColor: "#fff", color: "#000" }}
-          >
-            <Container maxWidth="xl">
-              <Toolbar disableGutters>
-                <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-                <Typography
-                  variant="h6"
-                  noWrap
-                  component="a"
-                  href="/"
-                  sx={{
-                    mr: 2,
-                    display: { xs: "none", md: "flex" },
-                    fontFamily: "monospace",
-                    fontWeight: 700,
-                    letterSpacing: ".3rem",
-                    color: "inherit",
-                    textDecoration: "none",
-                  }}
-                >
-                  LOGO
-                </Typography>
+      <Backdrop open={isAuthenticated ? openSpeedDial : false} />
+      <AppBar
+        position="static"
+        style={{ backgroundColor: "#fff", color: "#000" }}
+      >
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              LOGO
+            </Typography>
 
-                <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                  <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleOpenNavMenu}
-                    color="inherit"
-                  >
-                    <MenuIcon />
-                  </IconButton>
-
-                  <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorElNav}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "left",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "left",
-                    }}
-                    open={Boolean(anchorElNav)}
-                    onClose={handleCloseNavMenu}
-                    sx={{
-                      display: { xs: "block", md: "none" },
-                    }}
-                  >
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <Link to="/">Home</Link>
-                    </MenuItem>{" "}
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <Link to="/products">Products</Link>
-                    </MenuItem>
-                  </Menu>
-                </Box>
-                <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-                <Typography
-                  variant="h5"
-                  noWrap
-                  component="a"
-                  href=""
-                  sx={{
-                    mr: 2,
-                    display: { xs: "flex", md: "none" },
-                    flexGrow: 1,
-                    fontFamily: "monospace",
-                    fontWeight: 700,
-                    letterSpacing: ".3rem",
-                    color: "inherit",
-                    textDecoration: "none",
-                  }}
-                >
-                  LOGO
-                </Typography>
-                <Box
-                  sx={{
-                    flexGrow: 1,
-                    display: { xs: "none", md: "flex" },
-                    gap: "15px",
-                  }}
-                >
-                  <Link to="/" className="link">
-                    Home
-                  </Link>
-                  <Link to="/products" className="link">
-                    Products
-                  </Link>
-                </Box>
-                <button onClick={handleClickOpen}>
-                  <SearchIcon fontSize="medium" />
-                </button>
-                <Link to="/cart" className="mx-4 mr-8">
-                  <Badge
-                    badgeContent={!cartLoading && cartItems && cartItems.length}
-                    sx={{
-                      "& .MuiBadge-badge": {
-                        backgroundColor: "#fe5f1e",
-                      },
-                    }}
-                  >
-                    <ShoppingCartIcon style={{ color: "#000" }} />
-                  </Badge>
-                </Link>
-
-                {isAuthenticated ? (
-                  <>
-                    <div className="h-[56px]">
-                      <SpeedDial
-                        open={openSpeedDial}
-                        onClose={() => setOpenSpeedDial(false)}
-                        onOpen={() => setOpenSpeedDial(true)}
-                        ariaLabel="SpeedDial basic example"
-                        direction="down"
-                        icon={
-                          <Avatar
-                            alt={user && user.name}
-                            src={user && user.avatar && user.avatar.url}
-                            style={{ width: "100%", height: "100%" }}
-                          />
-                        }
-                      >
-                        {actions.map((action) => (
-                          <SpeedDialAction
-                            key={action.name}
-                            icon={action.icon}
-                            tooltipTitle={action.name}
-                            onClick={action.func}
-                            tooltipOpen={window.innerWidth < 600 ? true : false}
-                          />
-                        ))}
-                      </SpeedDial>
-                    </div>
-                  </>
-                ) : (
-                  <div className="flex items-center gap-2 ">
-                    {" "}
-                    <Link to="/login" className="btn">
-                      Login
-                    </Link>{" "}
-                    <Link to="/register" className="btn">
-                      SignUp
-                    </Link>{" "}
-                  </div>
-                )}
-              </Toolbar>
-            </Container>
-          </AppBar>
-
-          <Dialog onClose={handleClose} open={open}>
-            <DialogContent style={{ padding: "0px" }}>
-              {" "}
-              <form
-                onSubmit={searchHandler}
-                className="flex items-center border border-slate-200 shadow-md md:w-[100%] w-[250px] px-2 py-1"
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
               >
-                <div className="input-div">
-                  <input
-                    className="outline-none focus:ring-0  w-full"
-                    type="text"
-                    onChange={(e) => setKeyword(e.target.value)}
-                    value={keyword}
-                    placeholder="Search Products"
-                  />
-                  <Button size="small" variant="contained" type="submit">
-                    Search{" "}
-                  </Button>
+                <MenuIcon />
+              </IconButton>
+
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: "block", md: "none" },
+                }}
+              >
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Link to="/">Home</Link>
+                </MenuItem>{" "}
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Link to="/products">Products</Link>
+                </MenuItem>
+              </Menu>
+            </Box>
+            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href=""
+              sx={{
+                mr: 2,
+                display: { xs: "flex", md: "none" },
+                flexGrow: 1,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              LOGO
+            </Typography>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+                gap: "15px",
+              }}
+            >
+              <Link to="/" className="link">
+                Home
+              </Link>
+              <Link to="/products" className="link">
+                Products
+              </Link>
+            </Box>
+            <button onClick={handleClickOpen}>
+              <SearchIcon fontSize="medium" />
+            </button>
+            <Link to="/cart" className="mx-4 mr-8">
+              <Badge
+                badgeContent={!cartLoading && cartItems && cartItems.length}
+                sx={{
+                  "& .MuiBadge-badge": {
+                    backgroundColor: "#fe5f1e",
+                  },
+                }}
+              >
+                <ShoppingCartIcon style={{ color: "#000" }} />
+              </Badge>
+            </Link>
+
+            {isAuthenticated === true && !loading ? (
+              <>
+                <div className="h-[56px]">
+                  <SpeedDial
+                    open={openSpeedDial}
+                    onClose={() => setOpenSpeedDial(false)}
+                    onOpen={() => setOpenSpeedDial(true)}
+                    ariaLabel="SpeedDial basic example"
+                    direction="down"
+                    icon={
+                      <Avatar
+                        alt={user && user.name}
+                        src={user && user.avatar && user.avatar.url}
+                        style={{ width: "100%", height: "100%" }}
+                      />
+                    }
+                  >
+                    {actions.map((action) => (
+                      <SpeedDialAction
+                        key={action.name}
+                        icon={action.icon}
+                        tooltipTitle={action.name}
+                        onClick={action.func}
+                        tooltipOpen={window.innerWidth < 600 ? true : false}
+                      />
+                    ))}
+                  </SpeedDial>
                 </div>
-              </form>
-            </DialogContent>
-          </Dialog>
-        </>
-      )}
+              </>
+            ) : (
+              <div className="flex items-center gap-2 ">
+                {" "}
+                <Link to="/login" className="btn">
+                  Login
+                </Link>{" "}
+                <Link to="/register" className="btn">
+                  SignUp
+                </Link>{" "}
+              </div>
+            )}
+          </Toolbar>
+        </Container>
+      </AppBar>
+
+      <Dialog onClose={handleClose} open={open}>
+        <DialogContent style={{ padding: "0px" }}>
+          {" "}
+          <form
+            onSubmit={searchHandler}
+            className="flex items-center border border-slate-200 shadow-md md:w-[100%] w-[250px] px-2 py-1"
+          >
+            <div className="input-div">
+              <input
+                className="outline-none focus:ring-0  w-full"
+                type="text"
+                onChange={(e) => setKeyword(e.target.value)}
+                value={keyword}
+                placeholder="Search Products"
+              />
+              <Button size="small" variant="contained" type="submit">
+                Search{" "}
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

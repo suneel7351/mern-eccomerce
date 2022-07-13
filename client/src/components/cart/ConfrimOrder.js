@@ -61,14 +61,14 @@ function ConfrimOrder() {
                     key={item.product}
                     className="flex justtify-start gap-3 md:gap-0 items-center md:justify-between"
                   >
-                    <div className="flex gap-2 md:gap-8 items-center">
+                    <div className="flex gap-2 md:gap-8 items-center md:flex-row flex-col">
                       <img
                         src="https://rukminim1.flixcart.com/image/497/596/ky0g58w0/fabric/f/x/s/no-2-35-m-unstitched-na-tshirt-33-retail-store-original-imagacybfnb5cz9h.jpeg?q=50"
                         alt={item.name}
                         className="w-[50px]"
                       />
-                      <span className="text-slate-700 text-xl">
-                        {item.name}
+                      <span className="text-slate-700 text-xl w-full">
+                        {item.name.substring(0,40)}
                       </span>
                     </div>
                     <div>
